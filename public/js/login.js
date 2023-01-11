@@ -13,9 +13,7 @@ const registrationHandler = async (e) => {
       body: JSON.stringify({email, first_name, last_name, password}),
       headers: {'Content-Type': 'application/json'}
     });
-    if(response.ok) {
-      document.location.replace('/');
-    }
+    
   }
 }
 

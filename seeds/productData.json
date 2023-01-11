@@ -1,0 +1,16 @@
+[
+  {
+    "id": 1,
+    "name": "Gucci by Gucci",
+    "description": "",
+    "price": 80,
+    "manufacturer": "Gucci"
+  },
+  {
+    "id": 2,
+    "name": "Nautica Voyage",
+    "description": "",
+    "price": 30,
+    "manufacturer": "Nautica"
+  }
+]

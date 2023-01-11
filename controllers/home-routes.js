@@ -22,13 +22,12 @@ router.get('/', async (req, res) => {
 //   }
 // });
 
-
 router.get('/login', async (req, res) => {
-  try {
-    res.render('login')
-  } catch(err) {
-    res.status(500).json(err);
-  }
+  // if(req.session.logged_in) {
+  //   res.redirect('/');
+  //   return;
+  // }
+res.render('login', {loggedIn: req.session.logged_in});
 });
 
 module.exports = router;
