@@ -1,4 +1,9 @@
 const router = require('express').Router();
+
+router.get('/', async (req, res) => {
+
+});
+
 const axios = require('axios');
 
 // set up the request parameters

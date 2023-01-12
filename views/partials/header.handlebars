@@ -1,0 +1,10 @@
+<header>
+  {{#unless logged_in}}
+  <a href="/login">Login</a>
+  <a href='/register'>Register</a>
+  {{/unless}}
+
+  {{#if logged_in}}
+  <a id='header-logout'>Logout</a>
+  {{/if}}
+</header>
