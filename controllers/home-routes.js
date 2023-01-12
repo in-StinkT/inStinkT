@@ -1,5 +1,5 @@
 const router = require("express").Router();
-const { Product } = require("../models");
+const { Product, User } = require("../models");
 
 // /
 router.get("/", async (req, res) => {
@@ -36,6 +36,17 @@ router.get("/logout", async (req, res) => {
     res.redirect("/");
   }
 });
+
+router.get('/profile', async (req, res) => {
+  try {
+    const dbUserData = await User.findByPk(req.session.user_id)
+    const profileData = {email : dbUserData.email, first_name: dbUserData.first_name, last_name: dbUserData.last_name, logged_in: req.session.logged_in, user_id: req.session.user_id}
+
+    res.render('profile', profileData)
+  } catch (err) {
+
+  }
+})
 
 // /register
 router.get("/register", async (req, res) => {
