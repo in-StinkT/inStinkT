@@ -1,10 +1,13 @@
 <header>
+
+  <a href="/">Home</a>
   {{#unless logged_in}}
   <a href="/login">Login</a>
   <a href='/register'>Register</a>
   {{/unless}}
 
   {{#if logged_in}}
+  <a href="/profile" id='header-profile'>Profile  </a>
   <a id='header-logout'>Logout</a>
   {{/if}}
 </header>
