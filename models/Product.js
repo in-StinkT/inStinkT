@@ -12,18 +12,17 @@ Product.init(
       autoIncrement:true
     },
     name: {
-      type:DataTypes.STRING,
+      type:DataTypes.TEXT,
       allowNull: false
     },
     description: {
-      type: DataTypes.STRING
+      type: DataTypes.TEXT
     },
-    price: {
-      type: DataTypes.DECIMAL(13,2),
-      allowNull: false
+    price:{
+      type:DataTypes.DECIMAL,
     },
     manufacturer: {
-      type: DataTypes.STRING,
+      type: DataTypes.TEXT,
       allowNull: false
     }
   },
