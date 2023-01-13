@@ -24,7 +24,7 @@ const sess = {
   })
 };
 
-console.log(process.env.SESSION_SECRET);
+
 app.use(session(sess));
 
 // Middleware
