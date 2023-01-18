@@ -7,13 +7,14 @@ const registrationHandler = async (e) => {
   const password = document.querySelector('#passwordInput').value.trim();
   const passwordConfirm = document.querySelector('#passwordConfirmInput').value.trim();
 
-  if(email && first_name && last_name && password && passwordConfirm && password === passwordConfirm) {
+  if (email && first_name && last_name && password && passwordConfirm && password === passwordConfirm) {
     const response = await fetch('/api/users', {
       method: 'POST',
-      body: JSON.stringify({email, first_name, last_name, password}),
-      headers: {'Content-Type': 'application/json'}
+      body: JSON.stringify({ email, first_name, last_name, password }),
+      headers: { 'Content-Type': 'application/json' }
     });
-    
+
+    console.log(response)
   }
 }
 

@@ -1,6 +1,8 @@
-<div>
-  <h3>{{name}}</h3>
-  <p>{{description}}</p>
-  <p>${{price}}</p>
-  <img src={{manufacturer}}>
+<div class="card" style="width: 18rem;">
+  <img class="card-img-top" src={{manufacturer}} alt="product image" />
+  <div class="card-body">
+    <h5 class="card-title">{{name}}</h5>
+    <li class="list-group-item">${{price}}</li>
+    <p class="card-text">{{description}}</p>
+  </div>
 </div>
