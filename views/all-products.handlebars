@@ -1,5 +1,8 @@
-<section>
+
+  <div class="card-columns">
   {{#each products as |product|}}
-  {{> product-details}}
+  <a href="/product/{{id}}">{{> product-details}}</a>
   {{/each}}
-</section>
+  </div>
+
+
