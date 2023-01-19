@@ -7,6 +7,7 @@ const routes = require('./controllers');
 const hbs = exphbs.create({});
 const PORT = process.env.PORT || 8000;
 const app = express();
+const fontawesome = require('@fortawesome/fontawesome-free')
 
 const SequelizeStore = require('connect-session-sequelize')(session.Store)
 
