@@ -3,6 +3,7 @@ const {Product} = require('../models');
 
 router.get('/', async (req,res) => {
   const dbProductData = await Product.findAll();
+  console.log(dbProductData);
   const products = dbProductData.map((product) => product.get({plain: true}));
   console.log(products[0]);
   res.render('all-products', {products, logged_in: req.session.logged_in});

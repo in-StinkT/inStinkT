@@ -32,6 +32,13 @@ Product.init(
         key: 'id',
       },
     },
+    favorite_id: {
+      type: DataTypes.INTEGER,
+      references: {
+        model: 'favorite',
+        key: 'id'
+      },
+    }
   },
   {
     sequelize,
