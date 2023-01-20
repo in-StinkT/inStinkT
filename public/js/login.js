@@ -37,5 +37,4 @@ const loginHandler = async (e) => {
   }
 }
 
-
 document.querySelector('#login-form').addEventListener('submit', loginHandler)

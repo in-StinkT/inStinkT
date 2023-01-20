@@ -1,8 +1,8 @@
-<div class="card" style="width: 18rem;">
-  <img class="card-img-top" src={{manufacturer}} alt="product image" />
-  <div class="card-title">
-    <a href={{description}} target="_blank"><h5 class="card-body">{{name}}</h5></a>
-      <div class="card-text">${{price}}</i></div>
+<div class="product">
+  <img class="img"src={{manufacturer}} alt="product image" />
+  <div>
+    <a href={{description}} target="_blank"><h5>{{name}}</h5></a>
+      <div>${{price}}</i></div>
   <form action="/favorites" method="post" type='submit'name='addFav' value="{}">
     <i class="fa-regular fa-heart" id="addFav">Add to Favorite</i>
   </form>
