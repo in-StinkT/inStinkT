@@ -1,6 +1,6 @@
 // // on form submit link to user save to favorites
 const addFavorite = async function(e) {
- await fetch(//'api/favorite', {
+ await fetch('api/favorite', {
     method: 'POST',
     body: JSON.stringify({
      ...body, //not sure if this is right
