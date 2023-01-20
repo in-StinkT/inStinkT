@@ -1,12 +1,14 @@
 const sequelize = require('../config/connection');
-const {Product} = require('../models');
+const createDBObj = require('./index');
+const seedScents = require('./seedScents');
 
-const productData = require('./productData.json');
-
+//function to seed entire database with scents and their corresponding products
 const seedDatabase = async () => {
   await sequelize.sync({force: true});
-  
-  const products = await Product.bulkCreate(productData);
+  console.log("DATABASE SYNCED");
+  await seedScents();
+  await createDBObj();
+  console.log("DATABASE SEEDED");
 
   process.exit(0);
 };

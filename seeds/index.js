@@ -1,64 +1,99 @@
 
 const sequelize = require('../config/connection');
 const axios = require('axios');
-const {Product} = require('../models');
+const Product = require('../models/Product');
+const Scent = require('../models/Scent');
+const scentValues = require('./scentAPIValues');
 
 
-// function to fetch product data from ASIN Data API and build database table
-const fetchPerfumeData = async () => {
+ //function for fetching specific link(in this case each 'scent' refinement)
+const fetchScentProducts = async (scentVal) =>{
+  try{
     const params = {
       api_key: process.env.ASIN_KEY,
         type: "search",
-        amazon_domain: "amazon.com",
         search_term: "perfumes",
-        sort_by: "price_low_to_high",
         category_id: "11057051",
+        amazon_domain: "amazon.com",
+        refinements: scentVal,
       }
-      sequelize.sync({force:true})
-      // make the http GET request to ASIN Data API
-      axios.get('https://api.asindataapi.com/request', { params })
-      // creating objects with Product Model fields to be used to store in database.
-        .then((response)=>{
-            let products = [];
-            for(let i = 0; i<response.data.search_results.length; i++){
-              let priceData;
-              if(Object.hasOwn(response.data.search_results[i], 'price')){
-                priceData = response.data.search_results[i].price;
-              }
-              if(!Object.hasOwn(response.data.search_results[i], 'price')){
-                priceData = 0;
-              }
-              products[i] = {
-                name: response.data.search_results[i].title,
-                description: response.data.search_results[i].link,
-                price: priceData,
-                manufacturer: response.data.search_results[i].image,
-              }
-            }
-            return products;
-        })
-        // had to implement some extra logic to work around some API data fields missing
-        .then((products)=>{
-          for(let i = 0;i<products.length;i++){
-            if(Object.hasOwn(products[i].price, 'value')){
-              products[i].price = products[i].price.value;
-            }
-           if(!Object.hasOwn(products[i].price, 'value') && products[i].price.raw === 'Another way to buy'){
-              let noDollar = products[i].price.name.replace(/\$/g,"");
-              products[i].price = parseFloat(noDollar);
-            }
-            console.log(i,products[i].price);
-          }
-          return products;
-        })
-        // creating a products table with all of the fetched products
-        .then((products)=>{
-          Product.bulkCreate(products);
-          return;
-        }).catch(error => {
-            console.log(error);
-        })
+
+    const products = await axios.get('https://api.asindataapi.com/request', { params })
+    
+    return products.data.search_results;
+  }catch(err){
+    console.log(err);
   }
+}
 
-fetchPerfumeData();
 
+//fetching all products by scent, returns an array of objects,
+//each object having a scent property and a porducts property that has a value of an array of products.
+const getAllProds = async () =>{
+  try{
+    let allProducts = [];
+      await Promise.all(scentValues.map(async (scent,i)=>{
+        let data ={
+          scent: scent.name,
+          scentID: scent.id,
+          products: await fetchScentProducts(scent.value),
+        }
+        allProducts.push(data);
+      }));
+    return allProducts;
+  }catch(err){
+    console.log(err);
+  }
+}
+
+//creating each product object to be seeded into database with appropriate properties matching our Models.
+const createDBObj = async (array) =>{
+  try{
+    const scentData = await getAllProds();
+    let DBproducts = [];
+    scentData.forEach((obj,i)=>{
+      obj.products.forEach((prod)=>{
+        //declaring a price variable to parse through the price object of each product.
+        let priceData;
+        
+         if(prod.price){
+           if(Object.hasOwn(prod.price, 'value')){
+             priceData = prod.price.value;
+           }
+           else{
+             priceData = prod.price.name;
+           }
+         }
+         else{
+           priceData = null;
+         }
+         let noDollar;
+         if(typeof priceData === 'string'){
+           noDollar= parseFloat(priceData.replace(/\$/g,""),2);
+         }
+         if(typeof priceData === 'number'){
+           noDollar= priceData;
+         }
+         else{
+           noDollar = null;
+         }
+
+        //creating each individual product object for our Model.
+        let product = {
+          name: prod.title,
+          description: prod.link,
+          price: noDollar,
+          manufacturer: prod.image,
+          scent_id: obj.scentID,
+        }
+        DBproducts.push(product);
+      })
+    })
+    await Product.bulkCreate(DBproducts);
+  }catch(err){
+    console.log(err);
+  }
+}
+
+
+module.exports = createDBObj;

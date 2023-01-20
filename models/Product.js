@@ -24,6 +24,20 @@ Product.init(
     manufacturer: {
       type: DataTypes.TEXT,
       allowNull: false
+    },
+    scent_id: {
+      type: DataTypes.INTEGER,
+      references:{
+        model: 'scent',
+        key: 'id',
+      },
+    },
+    favorite_id: {
+      type: DataTypes.INTEGER,
+      references: {
+        model: 'favorite',
+        key: 'id'
+      },
     }
   },
   {

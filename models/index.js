@@ -1,3 +1,4 @@
+const Scent = require('./Scent');
 const Product = require('./Product');
 const User = require('./User');
 const Favorite = require('./Favorite');
@@ -21,4 +22,15 @@ Product.belongsToMany(Favorite, {
     through: 'favorite',
 });
 
-module.exports = {Product, User, Favorite}
+
+Product.belongsTo(Scent,{
+    foreignKey: 'scent_id',
+});
+Scent.hasMany(Product,{
+    foreignKey: 'scent_id',
+});
+
+
+
+
+module.exports = {Product, User, Scent, Favorite}
