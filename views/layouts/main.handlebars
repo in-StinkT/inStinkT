@@ -11,14 +11,13 @@
 
 <body>
   <main>
-    {{> header}}
+    <header>
+          {{> header}}
+    </header>
+
     <div class="container">
       <div class="row">
           {{{ body }}} 
-      </div>
-      <div class="row">
-      <button>Scent Finder Quiz</button>
-      {{> quiz}}
       </div>
     </div>
       <script src='./js/header.js'></script>
