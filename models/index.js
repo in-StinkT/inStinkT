@@ -11,9 +11,14 @@ User.hasMany(Product, {
     foreignKey: 'product_id',
 });
 
-Product.belongsTo(Favorite, {
+Favorite.belongsToMany(User, {
+    foreignKey: 'favorite_id',
+    through: 'favorite',
+});
+
+Product.belongsToMany(Favorite, {
     foreignKey: 'product_id',
-    through: 'Favorite',
+    through: 'favorite',
 });
 
 module.exports = {Product, User, Favorite}
