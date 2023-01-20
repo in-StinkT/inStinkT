@@ -1,13 +1,23 @@
 <header>
 
-  <a href="/">Home</a>
-  {{#unless logged_in}}
-  <a href="/login">Login</a>
-  <a href='/register'>Register</a>
-  {{/unless}}
-
-  {{#if logged_in}}
-  <a href="/profile" id='header-profile'>Profile  </a>
-  <a id='header-logout'>Logout</a>
-  {{/if}}
-</header>
+<ul class="nav justify-content-center">
+  <li>
+    <a class="nav-link" href="/">Home</a>
+  </li>
+    {{#unless logged_in}}
+  <li class="nav-item">
+    <a class="nav-link" href="/login">Login</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/register">Register</a>
+  </li>
+    {{/unless}}
+    {{#if logged_in}}
+  <li class="nav-item">
+    <a class="nav-link" href="/profile">Profile</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="#" id='header-logout'>Logout</a>
+  </li>
+    {{/if}}
+</ul>
