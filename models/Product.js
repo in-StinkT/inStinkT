@@ -24,7 +24,14 @@ Product.init(
     manufacturer: {
       type: DataTypes.TEXT,
       allowNull: false
-    }
+    },
+    scent_id: {
+      type: DataTypes.INTEGER,
+      references:{
+        model: 'scent',
+        key: 'id',
+      },
+    },
   },
   {
     sequelize,
