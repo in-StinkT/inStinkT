@@ -163,3 +163,12 @@ a{
     height: auto;
     margin-left: 5em;
 }
+
+#quiz-container, #finish {
+    display: none;
+    text-align: center;
+}
+
+#intro {
+    text-align: center;
+}
