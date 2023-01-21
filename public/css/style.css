@@ -41,6 +41,36 @@ h1:hover {
     background-color: rgb(12, 15, 12);
     color: white;
 }
+h2.questions{
+    margin-bottom: 5em;
+    text-align: center;
+}
+.quiz-container{
+    display: flex;
+    margin: 0;
+    flex-direction: column;
+    width: auto;
+    height: auto;
+}
+.choices{
+    display: flex;
+    flex-direction: row;
+    margin: 5em;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-items: center;
+}
+.img-container{
+    width: 10em;
+    height: 10em;
+    margin: 2em;
+    flex-shrink: 1;
+}
+.quiz-image{
+    width: 10em;
+    height: 10em;
+    object-fit: contain;  
+}
 
 h5{
     width:10em;
@@ -78,4 +108,58 @@ a{
 }
 .img{
    scale: 75%;
+}
+.button-container{
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 10em;
+}
+.nextPage, .previousPage{
+    font-size: 20px;
+    border-radius: 1px;
+    font-weight: bold;
+    height: auto;
+    width: 10em;
+    padding: 0.5em;
+    margin: 2em;
+    margin-top: 0em;
+    
+    transition: 0.2s ease-in-out;
+}
+.nextPage:hover, .previousPage:hover{
+    background-color: rgb(115, 160, 245);
+}
+.nextPageAnchor{
+    text-decoration: none;
+    width: fit-content;
+    height: max-content;
+}
+
+.nav-link{
+    font-weight: bold;
+    font-size: 32px;
+    margin: 0, 2em,0,2em;
+}
+.nav-item{
+    margin-left: 2em;
+    margin-right: 2em;
+}
+.header-container{
+    display: flex;
+    justify-content: space-between;
+    margin-top: 5em;
+}
+.nav-container{
+    width: max-content;
+    margin-right: 5em;
+}
+.header-name{
+    justify-self: flex-start;
+    font-size: 48px;
+    font-weight: bold;
+    width: fit-content;
+    height: auto;
+    margin-left: 5em;
 }

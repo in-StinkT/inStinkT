@@ -1,13 +1,37 @@
 const router = require('express').Router();
 const {Product} = require('../models');
 
-router.get('/', async (req,res) => {
-  const dbProductData = await Product.findAll();
-  console.log(dbProductData);
-  const products = dbProductData.map((product) => product.get({plain: true}));
-  console.log(products[0]);
-  res.render('all-products', {products, logged_in: req.session.logged_in});
+router.get('/page=:num', async (req,res) => {
+  try{
+    let isFirst = true;
+    let notLast = true;
+    const pageNum = req.params.num;
+    const dbProductData = await Product.findAll({
+      limit: 39,
+      offset: 39 * (pageNum-1),
+    });
 
+    let nextPage = parseInt(req.params.num) + 1
+    let previousPage = parseInt(req.params.num) - 1
+    if(dbProductData.length<39){
+      nextPage = null;
+      notLast = false;
+    }
+    if(pageNum>1){
+      isFirst = false;
+    }
+    const products = dbProductData.map((product) => product.get({plain: true}));
+    res.render('all-products', {
+      products, 
+      logged_in: req.session.logged_in, 
+      nextP: nextPage,
+      previousP: previousPage, 
+      notLast,
+      isFirst,
+    });
+  }catch(err){
+    console.log(err);
+  }
 });
 
 router.get('/:id', async (req, res) => {
