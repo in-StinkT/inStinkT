@@ -20,6 +20,21 @@
           {{{ body }}} 
       </div>
     </div>
+    {{!-- next page/previous page buttons --}}
+    {{#if products}}
+    <div class="button-container">
+      {{#if notLast}}
+        <a class="nextPageAnchor"href="/product/page={{nextP}}">
+          <button class="nextPage">Next Page</button>
+        </a>
+      {{/if}}
+      {{#unless isFirst}}
+      <a class="nextPageAnchor"href="/product/page={{previousP}}">
+        <button class="previousPage">Previous Page</button>
+      </a>
+      {{/unless}}
+    </div>
+    {{/if}}
       <script src='./js/header.js'></script>
   </main>
 </body>

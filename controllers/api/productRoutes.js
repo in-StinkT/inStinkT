@@ -5,11 +5,14 @@ const Scent = require('../../models/Scent');
 
 
 // GET route for all products
-router.get('/', async (req, res) => {
+router.get('/page=:num', async (req, res) => {
     try{
-        const productData = await Product.findAll(
+        const pageNum = req.params.num;        
+        const productData = await Product.findAndCountAll(
             {
             include: [{model: Scent, attributes:['name']}],
+            limit: 40,
+            offset: 40 * (pageNum-1),
         }
         )
         res.status(200).json(productData);
