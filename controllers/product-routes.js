@@ -1,5 +1,6 @@
 const router = require('express').Router();
 const {Product} = require('../models');
+const Scent = require('../models/Scent');
 
 router.get('/page=:num', async (req,res) => {
   try{
@@ -35,7 +36,10 @@ router.get('/page=:num', async (req,res) => {
 });
 
 router.get('/:id', async (req, res) => {
-  const dbProductData = await Product.findByPk(req.params.id)
+  const dbProductData = await Product.findByPk(req.params.id,
+    {
+      include:[{model: Scent, attributes:['name']}],
+    });
   const product = dbProductData.get({plain: true});
 
   const data = {
@@ -44,6 +48,7 @@ router.get('/:id', async (req, res) => {
     description: product.description,
     price: product.price,
     manufacturer: product.manufacturer,
+    scent: product.scent.name,
     logged_in: req.session.logged_in
   }
   
