@@ -21,11 +21,17 @@ const Favorite = require('./Favorite');
 //     foreignKey: 'product_id',
 //     through: 'favorite',
 // });
+Favorite.belongsTo(User, {
+    constraints: false,
+})
 User.hasMany(Favorite)
 Favorite.belongsTo(User)
+Product.belongsToMany(User,{
+    through:'favorite'
+})
 
 
-Favorite.hasOne(Product,{
+Favorite.belongsToMany(Product,{
     through: 'favorite'
 })
 Product.belongsToMany(Favorite,{

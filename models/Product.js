@@ -32,6 +32,13 @@ Product.init(
         key: 'id',
       },
     },
+     scent_id: {
+      type: DataTypes.INTEGER,
+      references:{
+        model: 'scent',
+        key: 'id',
+      },
+    },
   },
   {
     sequelize,
