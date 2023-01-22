@@ -8,11 +8,13 @@ const addFavorite = async function(e) {
     headers: { 'Content-Type': 'application/json' },
  });
  document.location.replace('/favorite');
-
+ 
 };
 
 document
     .querySelector('#addFav')
-    .addEventListener('submit', addFavorite);
+    .addEventListener('click', addFavorite);
 
     //add an if not logged in dont show heart
+
+    

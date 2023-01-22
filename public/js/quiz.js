@@ -1,7 +1,9 @@
+
+
 var questions = [
     {
         question: 'Which do you prefer?',
-        options: ['Amber/Wood', 'Citrus'],
+        options: ["https://www.carrementbelle.com/blog/wp-content/uploads/2020/08/sandalwood.jpg", 'Citrus'],
     },
     {
         question: 'Which do you prefer?',
@@ -17,12 +19,6 @@ var countFruity = 0;
 var countFresh = 0;
 
 
-$(".startBtn").onClick(function () {
-    $('#questions').show();
-    $('#intro').hide();
-});
-
-var answerEl = document.querySelector('.choices');
 
 // function endgame() {
 //     clearInterval(countFloral,countSpice,countCitrus,countWood,countFruity,countFresh);
@@ -31,6 +27,7 @@ var answerEl = document.querySelector('.choices');
 //     document.querySelector('#recommendation').textContent = //scentclass,
 // }
 
+var answerEl = document.querySelector('.choices');
 
 var qIndex = 0;
 
@@ -44,7 +41,7 @@ function showQuestion () {
         var btnOption = document.createElement('button');
         btnOption.setAttribute('class', 'option1');
         btnOption.setAttribute('value', answerOptions);
-        btnOption.textContent = i + 1 + answerOptions;
+        btnOption.textContent = i + 1 + " " + answerOptions;
         answerEl.append(btnOption);
     }
 }
@@ -62,7 +59,7 @@ function checkQuestion(event) {
 
         qIndex++;
 
-    if (seconds <= 0 || qIndex === questions.length) {
+    if (qIndex === questions.length) {
             endgame()
         }
         else {
@@ -75,4 +72,4 @@ answerEl.onclick = checkQuestion
 
 document
     .querySelector('.startBtn')
-    .addEventListener('submit', startQuiz)
+    .addEventListener('submit', showQuestion)

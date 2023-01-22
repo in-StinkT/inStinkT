@@ -35,6 +35,21 @@
       {{/unless}}
     </div>
     {{/if}}
+    {{!-- "" for products by scent only --}}
+    {{#if scentProducts}}
+    <div class="button-container">
+      {{#if notLast}}
+        <a class="nextPageAnchor"href="/scent={{scent}}/page={{nextP}}">
+          <button class="nextPage">Next Page</button>
+        </a>
+      {{/if}}
+      {{#unless isFirst}}
+      <a class="nextPageAnchor"href="/scent={{scent}}/page={{previousP}}">
+        <button class="previousPage">Previous Page</button>
+      </a>
+      {{/unless}}
+    </div>
+    {{/if}}
       <script src='./js/header.js'></script>
       <script
   src="https://code.jquery.com/jquery-3.6.1.min.js"
