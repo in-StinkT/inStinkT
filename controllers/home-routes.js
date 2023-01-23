@@ -1,5 +1,6 @@
 const router = require("express").Router();
 const { Product, User, Scent } = require("../models");
+const Favorite = require("../models/Favorite");
 
 // /
 router.get("/", async (req, res) => {
@@ -98,5 +99,27 @@ router.get('/scent=:scent/page=:num', async(req,res)=>{
 router.get("/register", async (req, res) => {
   res.render("register");
 });
+
+
+router.get('/favorites', async (req, res)=>{
+  try{
+    const favData = await Favorite.findAll({
+      where: {
+        user_id: req.session.user_id
+      }
+    },
+    {
+        include: [{model: Product}]
+    }
+    );
+    res.json(favData);
+    // const productData = 
+    // res.render('all-products', {favData, productData})
+  }catch(err){
+    console.log(err)
+  }
+
+  
+})
 
 module.exports = router;

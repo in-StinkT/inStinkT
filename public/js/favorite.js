@@ -1,20 +1,21 @@
+
 // // on form submit link to user save to favorites
-const addFavorite = async function(e) {
- await fetch('api/favorite', {
+var addFavorite = async function(e) {
+   let target = e.target;
+   const prodID = document.querySelector('i').attributes[1].value
+   console.log(target, "click working")
+   let response = await fetch('/api/favorites', {
     method: 'POST',
     body: JSON.stringify({
-     ...body, //not sure if this is right
+         product_id: prodID,
     }),
     headers: { 'Content-Type': 'application/json' },
  });
- document.location.replace('/favorite');
+ console.log(response);
+//  document.location.replace('/favorites');
  
 };
 
-document
-    .querySelector('#addFav')
-    .addEventListener('click', addFavorite);
+document.querySelector('.addFav').addEventListener('click', addFavorite);
 
-    //add an if not logged in dont show heart
-
-    
+   
