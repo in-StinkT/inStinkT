@@ -21,6 +21,8 @@ const validate = (email, password, passwordConfirm) => {
 };
 
 const registrationHandler = async (e) => {
+  e.preventDefault();
+
   try {
     const first_name = document.querySelector("#firstNameInput").value.trim();
     const last_name = document.querySelector("#lastNameInput").value.trim();
@@ -30,18 +32,21 @@ const registrationHandler = async (e) => {
       .querySelector("#passwordConfirmInput")
       .value.trim();
 
+    if (!validate(email, password, passwordConfirm)) {
+      return;
+    }
+
     const response = await fetch("/api/users", {
       method: "POST",
       body: JSON.stringify({ email, first_name, last_name, password }),
       headers: { "Content-Type": "application/json" },
     });
-    console.log(response);
-  } catch (err) {
-    console.log(err);
-  }
 
-  if (response.ok) {
-    document.location.replace("/");
+    if (response.ok) {
+      document.location.replace("/");
+    }
+  } catch (err) {
+    
   }
 };
 
