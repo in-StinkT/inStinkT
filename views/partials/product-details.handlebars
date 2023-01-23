@@ -4,12 +4,15 @@
   </div>
   <div>
     <a href={{description}} target="_blank"><h5>{{name}}</h5></a>
-      <div>${{price}}</i></div>
-  <form action="/favorites" method="post" type='submit'name='addFav' value="{}">
-    <i class="fa-regular fa-heart" id="addFav">Add to Favorite</i>
-  </form>
-  <div>{{scent.name}}</div>
+      <div class="price">${{price}}</i></div>
+      {{#if logged_in}}
+      <form action="/favorites" method="post" type='submit'name='addFav'>
+        <i class="fa-regular fa-heart addFav" value="{{id}}">Add to Favorite</i>
+      </form>
+      {{/if}}
+  <div class="scent">Scent: </div>
+  <a href="/scent={{scent.name}}/page=1" class="scent">{{scent.name}}</a>
   </div>
 </div>
 
-<script src="/public/js/favorite.js"></script>
+

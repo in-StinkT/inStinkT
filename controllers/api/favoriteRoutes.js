@@ -7,8 +7,7 @@ const withAuth = require('../../utils/auth');
 router.post('/', withAuth, async (req, res) => {
     try {
         const favorite = await Favorite.create({
-            ...req.body,
-            userId: req.session.userId,
+            ...req.body
         })
         res.json(favorite);
     } catch (err) {
