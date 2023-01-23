@@ -35,6 +35,5 @@ const registrationHandler = async (e) => {
     });
 
   }
-}
 
 document.querySelector('#registration-form').addEventListener('submit', registrationHandler)
