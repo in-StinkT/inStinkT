@@ -10,6 +10,7 @@ router.get('/page=:num', async (req,res) => {
     const dbProductData = await Product.findAll({
       limit: 39,
       offset: 39 * (pageNum-1),
+      include:[{model: Scent}],
     });
 
     let nextPage = parseInt(req.params.num) + 1

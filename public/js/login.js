@@ -1,6 +1,3 @@
-// const validatePass = async (pass) => {
-//   const user = await fetch('/api/')
-// }
 
 const loginHandler = async (e) => {
   e.preventDefault();

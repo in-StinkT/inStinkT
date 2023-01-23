@@ -11,6 +11,14 @@ const fontawesome = require('@fortawesome/fontawesome-free')
 
 const SequelizeStore = require('connect-session-sequelize')(session.Store)
 
+
+// Middleware
+app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
+app.use('/public', express.static(path.join(__dirname, 'public'))); // Will attempt to serve static files from public directory if no route is matched
+
+
+
 // View engine setup
 app.engine('handlebars', hbs.engine);
 app.set('view engine', 'handlebars');
@@ -27,11 +35,6 @@ const sess = {
 
 
 app.use(session(sess));
-
-// Middleware
-app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
-app.use(express.static(path.join(__dirname, 'public'))); // Will attempt to serve static files from public directory if no route is matched
 
 // Routes
 app.use(routes);
