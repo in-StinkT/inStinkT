@@ -1,3 +1,9 @@
-  {{#each scentProducts as |scentProduct|}}
-  <a href="/product/{{id}}">{{> product-details}}</a>
-  {{/each}}
+  
+  <div class="scent-container">
+    <div class="scent-header">Displaying by scent: {{scent}}</div>
+    <div class="prods-container">
+      {{#each scentProducts as |scentProduct|}}
+      <a href="/product/{{id}}">{{> product-details}}</a>
+      {{/each}}
+    </div>
+  </div>

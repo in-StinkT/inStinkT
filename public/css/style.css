@@ -121,6 +121,10 @@ a{
     0px 0px 5px rgb(77, 77, 77),
     0px 0px 7px rgb(77, 77, 77);
 }
+.price{
+    text-align: center;
+    font-size: 32px;
+}
 .img-container{
     height: auto;
     width: auto;
@@ -193,6 +197,21 @@ a{
     text-align: center;
     font-size: 32px;
 }
-.scent-anchor{
-
+.scent-container{
+    display: flex;
+    flex-direction: column;
+}
+.scent-header{
+    font-size: 48px;
+    font-weight: bold;
+    text-align: center;
+}
+.prods-container{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+a.scent{
+    width: 100%;
+    text-align: center;
 }
