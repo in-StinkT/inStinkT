@@ -34,7 +34,10 @@ const registrationHandler = async (e) => {
       headers: { 'Content-Type': 'application/json' }
     });
 
-  }
-}
+    if(response.ok) {
+      document.location.replace('/');
+    }
 
+  }
+  
 document.querySelector('#registration-form').addEventListener('submit', registrationHandler)
