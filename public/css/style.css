@@ -228,13 +228,14 @@ a.scent{
     margin-bottom: 1em;
 }
 .quizButtons{
-    margin-top: 3em;
+    margin-top: 2em;
 }
 div#intro{
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    background-color: white;
 }
 .finalScent{
     border: none;
@@ -258,9 +259,10 @@ div#intro{
     text-align: left;
   }
   h2.quizH2 {
-    font-size: 3.5rem;
+    font-size: 3rem;
     line-height: 1.05;
     text-align: center;
+    padding: 2rem;
   }
   
   /* p.quizP {
@@ -322,6 +324,10 @@ div#intro{
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    background-image: url("/public/assets/fragrances-lead-1603459262.jpeg");
+    background-position: 50%;
+    background-repeat: no-repeat;
+    min-height: 500px;
   }
   .result{
     font-size: 32px;
