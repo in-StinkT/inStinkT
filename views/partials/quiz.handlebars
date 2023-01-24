@@ -1,21 +1,24 @@
-<div class="quiz-container">
-  <div id="intro">
-    <h2 class="quizH2">Scent Quiz</h2>
-    <button class="startBtn">
-      Start Quiz
-    </button>
+<div class="quiz-main-container">
+  <div class="quiz-container">
+    <div id="intro">
+      <h2 class="quizH2">Scent Quiz</h2>
+      <button class="startBtn nextPage quizButtons">
+        Start Quiz
+      </button>
+    </div>
+
+  <section class="quizSection"id="quiz">
+    <h1 class="quizH1">Which scent do you prefer?</h1>
+    <div id="questions"></div>
+    <div id="answer"></div>
+  </section>
+
+  <div id="finish">
+    {{!-- dynamic --}}
+    <a href="" class="scent-answer"></a>
   </div>
-
-<section class="quizSection"id="quiz">
-  <h1 class="quizH1">Which scent do you prefer?</h1>
-  <div id="questions"></div>
-  <div id="answer"></div>
-</section>
-
-<div id="finish">
-  {{!-- dynamic --}}
-</div>
-<div id="retake">
-  <button>Retake Quiz</button>
+  <div id="retake">
+    <button id="endButton"class="nextPage quizButtons">Retake Quiz</button>
+  </div>
 </div>
 <script src="../public/js/quiz.js"></script>

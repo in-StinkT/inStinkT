@@ -192,7 +192,7 @@ const populateQuestions = () => {
         question.answers.forEach(answer => {
             const answerBlock = document.createElement('div')
             answerBlock.classList.add('answer-block')
-            answerBlock.addEventListener('click', () => handleClick(answer.value))
+            answerBlock.addEventListener('click', () =>handleClick(answer.value))
             const answerImage = document.createElement('img')
             answerImage.setAttribute('src', answer.image)
             answerImage.setAttribute('alt', answer.alt)
@@ -207,7 +207,6 @@ const populateQuestions = () => {
     })
 }
 const handleClick = (value) => {
-    console.log(countFloral)
     if (value == 'floral') {
         floral();
     }
@@ -229,11 +228,8 @@ const handleClick = (value) => {
 
     countQuestions += 1;
     if (countQuestions >= 8) {
-        console.log(showResults())
         return endQuiz();
     }
-
-
 }
 
 
@@ -270,41 +266,57 @@ function fresh() {
 
 function showResults () {
     if (countFloral >= Math.max(countCitrus, countFresh, countFruity, countSpice, countWood)) {
-        return 'floral'
+        return 'Floral'
     }
     else if (countCitrus >= Math.max(countFloral, countFresh, countFruity, countSpice, countWood)) {
-        return 'citrus'
+        return 'Citrus'
     }
     else if (countFresh >= Math.max(countFloral, countCitrus, countFruity, countSpice, countWood)) {
-        return 'fresh'
+        return 'Fresh'
     }
     else if (countFruity >= Math.max(countFloral, countFresh, countCitrus, countSpice, countWood)) {
-        return 'fruity'
+        return 'Fruity'
     }
     else if (countSpice >= Math.max(countFloral, countFresh, countCitrus, countFruity, countWood)) {
-        return 'spice'
+        return 'Spice'
     }
     else if (countWood >= Math.max(countFloral, countFresh, countCitrus, countSpice, countFruity)) {
-        return 'wood'
+        return 'Wood'
     }
 }
 
 function showQuiz() {
     document.getElementById('intro').style.display = "none";
     document.getElementById('quiz').style.display = "initial";
-    document.getElementById('finish').style.display = "block";
+    document.getElementById('finish').style.display = "flex";
     document.getElementById('retake').style.display = "initial";
     populateQuestions();
   };
 
-function endQuiz(){
+  function endQuiz(){
     document.getElementById('quiz').style.display = 'none'
     let result = showResults(); // floral, woody, etc.
+    let scentLink = document.createElement('a');
+    scentLink.setAttribute('href', `/scent=${result}/page=1`)
+    scentLink.classList.add('finalScent')
+    scentLink.textContent = result;
+    let scentType = document.createElement('p');
+    scentType.classList.add('finalScent')
+    let scentContainer = document.createElement('div');
+    scentContainer.classList.add('result-container')
+    scentContainer.appendChild(scentType);
+    scentContainer.appendChild(scentLink);
+    scentType.textContent = (`Your preferred scent type: `)
+    const endButton = document.querySelector('#endButton')
 
-    scentType = document.createElement('p');
-    scentType.textContent = (`Your preferred scent type! ${result}`)
-
+    endButton.addEventListener('click', ()=>{
+        document.location.replace("/");
+    })
+    
     finishQuiz.append(scentType)
+    finishQuiz.append(scentLink)
+    
+    
 }
 
 
