@@ -97,3 +97,9 @@ const createDBObj = async (array) =>{
 
 
 module.exports = createDBObj;
+
+
+
+
+
+

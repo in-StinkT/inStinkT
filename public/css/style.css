@@ -90,7 +90,7 @@ a{
     margin: 5em;
     padding: 2em;
     flex-wrap: wrap;
-    /* justify-content: space-around; */
+    justify-content: space-around;
     align-items: center;
 }
 .login{
@@ -210,6 +210,8 @@ a{
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
 }
 a.scent{
     width: 100%;
@@ -217,8 +219,28 @@ a.scent{
 }
 #quiz, #finish, #retake {
     display: none;
+    flex-direction: column;
     text-align: center;
+    align-items: center;
+    justify-content: center;
   }
+#finish{
+    margin-bottom: 1em;
+}
+.quizButtons{
+    margin-top: 3em;
+}
+div#intro{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.finalScent{
+    border: none;
+    outline: none;
+    font-size: 32px;
+}
 
 
   /* body.quizBody{
@@ -239,7 +261,6 @@ a.scent{
     font-size: 3.5rem;
     line-height: 1.05;
     text-align: center;
-    margin-top: 1em;
   }
   
   /* p.quizP {
@@ -249,10 +270,11 @@ a.scent{
   
   .title-block {
     width: 600px;
-    height: 210px;
-    background-color: rgb(102,96,221);
+    height: 100px;
+    background-color: rgb(153, 149, 231);
     border-radius: 5px;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-content: center;
     color: rgb(255,255,255)
@@ -273,6 +295,19 @@ a.scent{
     text-align: center;
     margin-bottom: 15px;
     overflow: hidden;
+    cursor: pointer;
+
+    transition: 0.2s ease-in-out;
+  }
+  .answer-block:hover{
+    box-shadow: 0px 0px 10px rgb(23, 105, 132),
+    0px 0px 20px rgb(135, 207, 231),
+    0px 0px 30px lightblue,
+    0px 0px 40px lightblue;
+    transform: scale(101%);
+  }
+  .answer-block:active{
+    transform: scale(98%);
   }
   
   .answer-block img {
@@ -280,4 +315,23 @@ a.scent{
   object-position: 100% 0;
   width: 500px;
   
+  }
+  .quiz-main-container{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  .result{
+    font-size: 32px;
+    text-align: center;
+    padding: 1em;
+  }
+  .result-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: 32px;
   }
